@@ -1,2 +1,2 @@
-pip install -r requirements
-python video_engine.py
+* pip install -r requirements
+* python video_engine.py
