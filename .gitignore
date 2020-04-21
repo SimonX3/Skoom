@@ -1,0 +1,9 @@
+idea
+*.pyc
+*~
+__pycache__
+venv
+myvenv
+db.sclite3
+.DS_Store
+output.avi
