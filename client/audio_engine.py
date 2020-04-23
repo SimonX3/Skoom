@@ -1,5 +1,3 @@
-# sudo apt-get install libportaudio2
-
 import sounddevice as sd
 from queue import Queue
 import time
@@ -14,6 +12,3 @@ def sound_iterator():
     with sd.InputStream(channels=1, callback=callback, samplerate=1000):
         while True:
             yield sounds_queue.get()
-
-
-

@@ -6,4 +6,4 @@ venv
 myvenv
 db.sclite3
 .DS_Store
-output.avi
+client/data_store/video_output.avi

@@ -29,8 +29,7 @@ def show_video(video_iterator):
             window_is_open = True
 
 
-
-def write_video(video_iterator, file_path='output.avi'):
+def write_video(video_iterator, file_path='client/data_store/video_output.avi'):
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
     out = cv2.VideoWriter(file_path, fourcc, 20.0, (640, 480))
     for frame in video_iterator:
