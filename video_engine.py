@@ -24,8 +24,9 @@ def show_video(video_iterator):
         if window_is_open and (cv2.getWindowProperty(window_name, cv2.WND_PROP_VISIBLE)) != 1.0:
             cv2.destroyWindow(window_name)
             video_iterator.send('stop')
-        cv2.imshow(window_name, frame)
-        window_is_open = True
+        else:
+            cv2.imshow(window_name, frame)
+            window_is_open = True
 
 
 
