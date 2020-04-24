@@ -1,9 +1,15 @@
+import re
 import socket
+import pickle
 
 HEADER = b'START'
-HEADER_LENGTH = len(HEADER)
-FOOTER = b'END'
-FOOTER_LENGTH = len(FOOTER)
+READING_SIZE = 1024
+
+
+def parsing(chunk: bytes, tail: bytes):
+    chunk = tail + chunk
+    frames = [i for i in re.split(HEADER, chunk) if i != b'']
+    return frames[:-1], frames[-1]
 
 
 def tcp_server(host='localhost', port=5000):
@@ -14,8 +20,8 @@ def tcp_server(host='localhost', port=5000):
 
     while True:
         client_sock, addr = server_sock.accept()
-        for _byte in iter(lambda: client_sock.recv(1), ''):
-            if _byte is b'S':
-                _bytes = client_sock.recv(FOOTER_LENGTH - 1)
-                if _byte + _bytes == HEADER:
-                    pass
+        tail = b''
+        for chunk in iter(lambda: client_sock.recv(READING_SIZE), ''):
+            data_frames, tail = parsing(chunk, tail)
+            for data_frame in data_frames:
+                yield pickle.loads(data_frame)

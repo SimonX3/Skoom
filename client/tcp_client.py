@@ -2,7 +2,6 @@ import pickle
 from socket import socket, AF_INET, SOCK_STREAM
 
 HEADER = b'START'
-FOOTER = b'END'
 
 
 def tcp_client(data_iterator, host='localhost', port=5000):
@@ -13,4 +12,4 @@ def tcp_client(data_iterator, host='localhost', port=5000):
 
 
 def encapsulate_frame(data_frame):
-    return HEADER + pickle.dumps(data_frame) + FOOTER
+    return HEADER + pickle.dumps(data_frame)
