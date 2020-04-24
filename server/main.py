@@ -11,8 +11,14 @@ def show_video(video_iterator):
             break
 
 
+def decompess_video(video_iterator):
+    for frame in video_iterator:
+        de_frame = cv2.imdecode(frame[1], frame[0])
+        yield de_frame
+
+
 def main():
-    show_video(tcp_server())
+    show_video(decompess_video(tcp_server()))
 
 
 if __name__ == '__main__':

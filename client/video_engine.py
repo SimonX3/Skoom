@@ -42,5 +42,11 @@ def write_video(video_iterator, file_path='client/data_store/video_output.avi'):
     yield None
 
 
+def compess_video(video_iterator):
+    for frame in video_iterator:
+        en_frame = cv2.imencode('.jpg', frame)
+        yield en_frame
+
+
 if __name__ == '__main__':
     show_video(write_video(capture_video()))
