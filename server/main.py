@@ -1,6 +1,7 @@
 import cv2
 
 from tcp_server import tcp_server
+from udp_server import udp_server
 
 
 def show_video(video_iterator):
@@ -21,5 +22,9 @@ def main():
     show_video(decompess_video(tcp_server()))
 
 
+def main2():
+    show_video(decompess_video(udp_server()))
+
+
 if __name__ == '__main__':
-    main()
+    main2()

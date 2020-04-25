@@ -1,6 +1,8 @@
 import re
-import socket
 import pickle
+from socket import socket, AF_INET, SOCK_STREAM
+from socket import SOL_SOCKET, SO_REUSEADDR
+
 
 HEADER = b'START'
 READING_SIZE = 1024
@@ -13,8 +15,8 @@ def parsing(chunk: bytes, tail: bytes):
 
 
 def tcp_server(host='localhost', port=5000):
-    server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server_sock = socket(AF_INET, SOCK_STREAM)
+    server_sock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
     server_sock.bind((host, port))
     server_sock.listen()
 
