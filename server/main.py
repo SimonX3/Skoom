@@ -1,7 +1,7 @@
 import cv2
 
-from tcp_server import tcp_server
-from udp_server import udp_server
+from server.tcp_server import tcp_server
+from server.udp_server import udp_server
 
 
 def show_video(video_iterator):
@@ -16,6 +16,7 @@ def decompess_video(video_iterator):
     for frame in video_iterator:
         de_frame = cv2.imdecode(frame[1], frame[0])
         yield de_frame
+
 
 
 def main():
