@@ -51,7 +51,3 @@ def integrate_frame():
                     else:
                         current_chunk_num = 0
                         frame_is_done = True
-
-
-
-
