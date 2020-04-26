@@ -2,7 +2,7 @@ import sounddevice as sd
 from queue import Queue
 import time
 
- 
+
 def sound_iterator():
     sounds_queue = Queue()
 
