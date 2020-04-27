@@ -1,7 +1,9 @@
+import pickle
+import numpy as np
 from socket import socket, AF_INET, SOCK_DGRAM
 from socket import SOL_SOCKET, SO_REUSEADDR
-import numpy as np
-import pickle
+
+UDP_DATAGRAM_SIZE = 65000
 
 
 def udp_server(host='localhost', port=5000):
@@ -12,7 +14,7 @@ def udp_server(host='localhost', port=5000):
     frame_courutine.send(None)
 
     while True:
-        msg_slice, addr = server_sock.recvfrom(65000)
+        msg_slice, addr = server_sock.recvfrom(UDP_DATAGRAM_SIZE)
         frame = frame_courutine.send(msg_slice)
         if frame is not None:
             yield frame
