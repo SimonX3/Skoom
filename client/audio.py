@@ -1,14 +1,25 @@
-import sounddevice as sd
-from queue import Queue
-import time
+# sudo apt install python3-pyaudio
+# sudo apt-get install portaudio19-dev
+import pyaudio
 
 
-def sound_iterator():
-    sounds_queue = Queue()
+FORMAT = pyaudio.paInt16
+CHANNELS = 1
+RATE = 40100
+CHUNK = 1024
+RECORD_SECONDS = 5
 
-    def callback(outdata, frames, time_, status):
-        sounds_queue.put(outdata, time.time())
 
-    with sd.InputStream(channels=1, callback=callback, samplerate=1000):
-        while True:
-            yield sounds_queue.get()
+audio = pyaudio.PyAudio()
+
+
+def sounds_iterator():
+    audio_stream = audio.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
+    while True:
+        yield audio_stream.read(audio_stream.get_read_available())
+
+
+
+
+
+
