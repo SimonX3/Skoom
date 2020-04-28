@@ -1,10 +1,8 @@
-from video import capture_video, compess_video
-from audio import sounds_iterator
 import numpy as np
 from random import randint
 
-def ingestor():
-    for (frame, audio) in zip(compess_video(capture_video()), sounds_iterator()):
+def ingestor(video_iterator, sounds_iterator):
+    for (frame, audio) in zip(video_iterator, sounds_iterator):
         yield get_sounds(audio)
         df_num = randint(0, 10000000)
         for chunk in get_video_chanks(df_num, data_frame=frame):
