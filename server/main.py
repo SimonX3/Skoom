@@ -1,27 +1,6 @@
-import cv2
-from server.udp_server import udp_server
-from server.tcp_server import tcp_server
-from server.brokers import main_datagram_broker
-import pyaudio
-
-
-FORMAT = pyaudio.paInt16
-CHANNELS = 1
-RATE = 40100
-CHUNK = 4000
-RECORD_SECONDS = 5
-
-
-def show_video(frame):
-    type_frame = 'frame'
-    cv2.imshow(type_frame, frame)
-
-
-def decompess_video(frame):
-    de_frame = cv2.imdecode(frame[1], frame[0])
-    return de_frame
-
-
+from video import decompess_video, show_video
+from network.tcp_server import tcp_server
+from network.udp_server import udp_server
 
 
 def main():

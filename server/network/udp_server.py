@@ -1,7 +1,9 @@
+import pickle
+import numpy as np
 from socket import socket, AF_INET, SOCK_DGRAM
 from socket import SOL_SOCKET, SO_REUSEADDR
-import numpy as np
-import pickle
+
+UDP_DATAGRAM_SIZE = 65000
 
 
 def udp_server(host='localhost', port=5000):
@@ -46,7 +48,3 @@ def integrate_frame():
                     else:
                         current_chunk_num = 0
                         frame_is_done = True
-
-
-
-
