@@ -17,7 +17,6 @@ audio = pyaudio.PyAudio()
 def sounds_iterator():
     audio_stream = audio.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
     while True:
-        print (audio_stream.get_read_available())
         yield audio_stream.read(audio_stream.get_read_available())
 
 

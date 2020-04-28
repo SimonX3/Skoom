@@ -1,6 +1,7 @@
-from udp_client import udp_client
-from tcp_client import tcp_client
+from network.udp_client import udp_client
+from network.tcp_client import tcp_client
 from ingestor import ingestor
+from video import compess_video, capture_video
 
 
 def main():

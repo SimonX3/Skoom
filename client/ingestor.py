@@ -1,5 +1,5 @@
-from video_engine import capture_video, compess_video
-from audio_engine import sounds_iterator
+from video import capture_video, compess_video
+from audio import sounds_iterator
 import numpy as np
 from random import randint
 
