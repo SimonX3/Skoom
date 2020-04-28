@@ -1,19 +1,7 @@
-from socket import socket, AF_INET, SOCK_DGRAM
-from socket import SOL_SOCKET, SO_REUSEADDR
 import numpy as np
-import pickle
 
 
-def udp_server(host='localhost', port=5000):
-    server_sock = socket(AF_INET, SOCK_DGRAM)
-    server_sock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
-    server_sock.bind((host, port))
-    while True:
-        datagram, addr = server_sock.recvfrom(65000)
-        yield datagram
-
-
-def integrate_frame():
+def _video_broker():
     current_frame = None
     current_df_num = None
     current_chunk_num = 0
@@ -24,7 +12,6 @@ def integrate_frame():
         if frame_is_done:
             frame_is_done = False
             current_frame = None
-        msg_slice = pickle.loads(msg_slice)
         chunk_df_num = msg_slice['df_num']
         chunk_frame = msg_slice['chunk']
         chunk_num = msg_slice['slice_num']
@@ -48,5 +35,5 @@ def integrate_frame():
                         frame_is_done = True
 
 
-
-
+video_broker = _video_broker()
+video_broker.send(None)

@@ -1,6 +1,6 @@
 from udp_client import udp_client
-from video_engine import capture_video, compess_video
 from tcp_client import tcp_client
+from ingestor import ingestor
 
 
 def main():
@@ -8,7 +8,7 @@ def main():
 
 
 def main2():
-    udp_client(compess_video(capture_video()))
+    udp_client(ingestor())
 
 
 if __name__ == '__main__':
